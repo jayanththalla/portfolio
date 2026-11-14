@@ -6,6 +6,16 @@ import HeadingButton from "@/components/HeadingButton";
 
 const projectsList: ProjectCardProps[] = [
   {
+    title: "Jyntra – AI Career Intelligence",
+    description:
+      "An open, modern career platform designed to help developers and job seekers find verified startup opportunities, understand their role fit, prepare for interviews, and manage applications in a single unified workspace.",
+    image: "/jyntra.png",
+    tags: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "Groq API"],
+    liveLink: "https://jyntra.vercel.app",
+    githubLink: "https://github.com/jayanththalla/jyntra",
+    isLive: true,
+  },
+  {
     title: "AI Manufacturing Quality Copilot",
     description:
       "A multi-agent manufacturing quality assistant that combines RAG pipelines, MCP, and AI agents to analyze production defects, retrieve historical manufacturing knowledge, and assist engineers with intelligent recommendations.",
@@ -57,20 +67,24 @@ export default function Projects() {
     <div className="relative">
       <Heading title="Projects" />
       <div className="grid w-full grid-cols-1 md:grid-cols-2">
-        {projectsList.map((project, idx) => (
-          <div
-            key={idx}
-            className={cn(
-              "px-8 py-6 md:px-16 md:py-8",
-              idx % 2 === 0 ? "md:pr-8 md:pl-16" : "md:pr-16 md:pl-8",
-              idx === total - 1 ? "border-b-0" : "border-b",
-              idx < 2 ? "md:border-b" : "md:border-b-0",
-              idx % 2 === 0 ? "md:border-r" : "md:border-r-0",
-            )}
-          >
-            <ProjectCard {...project} />
-          </div>
-        ))}
+        {projectsList.map((project, idx) => {
+          const isLastRow =
+            Math.floor(idx / 2) === Math.ceil(total / 2) - 1;
+          return (
+            <div
+              key={idx}
+              className={cn(
+                "px-8 py-6 md:px-16 md:py-8",
+                idx % 2 === 0 ? "md:pr-8 md:pl-16" : "md:pr-16 md:pl-8",
+                idx === total - 1 ? "border-b-0" : "border-b",
+                !isLastRow ? "md:border-b" : "md:border-b-0",
+                idx % 2 === 0 ? "md:border-r" : "md:border-r-0",
+              )}
+            >
+              <ProjectCard {...project} />
+            </div>
+          );
+        })}
       </div>
       <HeadingButton title={"View All Projects"} href={"/projects"} />
     </div>

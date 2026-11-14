@@ -54,6 +54,11 @@ const getTagIcon = (tag: string) => {
       return <SiVercel size={14} />;
     case "tailwind css":
       return <SiTailwindcss />;
+    case "postgresql":
+    case "postgres":
+      return <SiPostgresql size={14} />;
+    case "shadcn/ui":
+      return <SiShadcnui size={14} />;
     default:
       return (
         <span className="font-mono text-[10px] font-bold">
